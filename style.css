@@ -1,0 +1,781 @@
+/* White Theme Base */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Yellow Running Ticker Bar */
+.top-ticker-bar {
+  background-color: #ffeb3b;
+  color: #1a1a1a;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ticker-content {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+.ticker-separator {
+  margin: 0 15px;
+  color: #333;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Header Styling - Light Mode */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0;
+}
+
+.brand-accent {
+  color: #f59e0b;
+}
+
+.header-contact {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-glass {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+.welcome-text {
+  font-size: 48px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: 2px;
+}
+
+/* Footer Light Theme */
+.footer {
+  background-color: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  padding: 40px 40px 20px 40px;
+  color: #4b5563;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-brand {
+  font-size: 22px;
+  color: #111827;
+  margin-bottom: 10px;
+}
+
+.footer-title {
+  font-size: 16px;
+  color: #111827;
+  margin-bottom: 15px;
+}
+
+.footer-btn-group, .social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-btn, .btn-social {
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-btn:hover, .btn-social:hover {
+  color: #f59e0b;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-img {
+  width: 50px;           /* Logo ki width */
+  height: 50px;          /* Logo ki height */
+  border-radius: 50%;    /* Round logo ke liye */
+  object-fit: cover;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #000000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
+}
+
+.brand-accent {
+  color: #f59e0b;
+}
+
+/* Center Navigation Links */
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #f59e0b;
+}
+
+/* Right Side Button */
+.btn-apply-now {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btn-apply-now:hover {
+  background-color: #f59e0b;
+  color: #000000;
+}
+/* ==========================================
+   DESKTOP STYLES
+   ========================================== */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 32px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #000000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #000000;
+  margin: 0;
+}
+
+.brand-accent {
+  color: #f59e0b;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #f59e0b;
+}
+
+.btn-apply-now {
+  background-color: #000000;
+  color: #ffffff;
+  padding: 9px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-apply-now:hover {
+  background-color: #f59e0b;
+  color: #000000;
+}
+
+.hamburger-btn {
+  display: none;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE STYLES (Max-Width: 960px)
+   ========================================== */
+@media (max-width: 960px) {
+  .header {
+    padding: 10px 16px;
+  }
+
+  .header-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-title {
+    font-size: 15px;
+  }
+
+  /* Hamburger Icon Show Karein */
+  .hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    height: 22px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 3px;
+    background-color: #000000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Hamburger Cross Icon Animation */
+  .hamburger-btn.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger-btn.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger-btn.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Navigation Drawer - Standard View me Hidden Hoga */
+  .header-nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden screen ke baahar */
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 25px 30px 25px;
+    gap: 20px;
+    border-left: 2px solid #000000;
+    transition: right 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Hamburger Click hone par 'active' class lagne par samne aayega */
+  .header-nav.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 16px;
+    width: 100%;
+  }
+
+  /* Apply Now Button Mobile Menu ke andar Full Width me dikhega */
+  .btn-apply-now {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+  }
+}
+/* Custom Keyframe Animations for Premium Glow & Flip Effect */
+@keyframes goldPulseGlow {
+  0% {
+    box-shadow: 0 8px 25px -5px rgba(37, 99, 235, 0.4), 0 0 15px rgba(245, 158, 11, 0.2);
+  }
+  50% {
+    box-shadow: 0 12px 35px 0 rgba(37, 99, 235, 0.6), 0 0 25px rgba(245, 158, 11, 0.5);
+  }
+  100% {
+    box-shadow: 0 8px 25px -5px rgba(37, 99, 235, 0.4), 0 0 15px rgba(245, 158, 11, 0.2);
+  }
+}
+
+@keyframes lightSweep {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+/* 3D Flip Container */
+.premium-flip-btn-wrapper {
+  perspective: 1000px;
+  display: inline-block;
+}
+
+/* Main Button Flip Card */
+.btn-apply-now-premium {
+  position: relative;
+  width: 170px;
+  height: 48px;
+  border-radius: 30px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: goldPulseGlow 4s ease-in-out infinite;
+}
+
+/* Flip on Hover */
+.premium-flip-btn-wrapper:hover .btn-apply-now-premium {
+  transform: rotateY(180deg);
+}
+
+/* Common Styles for Front and Back Faces */
+.btn-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Front Face Styling (Gradient Blue + Shimmer) */
+.btn-face-front {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #0f172a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Light Sweep Effect on Front Face */
+.btn-face-front::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: lightSweep 3.5s infinite;
+}
+
+/* Back Face Styling (Gold Accent Premium Theme) */
+.btn-face-back {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #0f172a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(254, 243, 199, 0.5);
+  transform: rotateY(180deg);
+}
+/* Clean White Theme Footer Base */
+.clean-white-footer {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 50px 20px 30px 20px;
+  border-top: 2px solid #000000;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Mobile Responsive Buttons Container */
+.footer-nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+
+/* Sharp Black Border Pill Buttons */
+.white-pill-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1.5px solid #000000;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-sizing: border-box;
+}
+
+.white-pill-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Media Queries for Extra Smooth Responsiveness */
+@media (max-width: 600px) {
+  .clean-white-footer {
+    padding: 35px 15px 25px 15px;
+  }
+  .footer-nav-container {
+    gap: 8px;
+    flex-direction: column;
+    width: 100%;
+  }
+  .white-pill-btn {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+/* Premium Footer Base Styles */
+.premium-dark-footer {
+  position: relative;
+  background: #050505;
+  border-top: 2px solid #fbbf24;
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #e2e8f0;
+}
+
+.footer-glow-bg {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 100px;
+  background: radial-gradient(ellipse, rgba(251, 191, 36, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.footer-content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-nav-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.gold-pill-btn {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 24px;
+  background: rgba(251, 191, 36, 0.05);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  border-radius: 50px;
+  color: #fbbf24;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+}
+
+.gold-pill-btn:hover {
+  background: #fbbf24;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(251, 191, 36, 0.4), 0 0 40px rgba(251, 191, 36, 0.2);
+  transform: translateY(-3px);
+}
+
+.academy-title {
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: -1px;
+  background: linear-gradient(to right, #ffffff, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 10px 30px rgba(251, 191, 36, 0.2);
+}
+
+.academy-desc {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0 auto 2.5rem auto;
+  font-weight: 400;
+  max-width: 650px;
+}
+
+.action-buttons-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.action-gold-btn {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #000;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 10px 20px -5px rgba(251, 191, 36, 0.3);
+}
+
+.action-gold-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 25px -5px rgba(251, 191, 36, 0.5);
+}
+
+.action-outline-btn {
+  background: transparent;
+  color: #fbbf24;
+  padding: 12px 28px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  border: 1.5px solid #fbbf24;
+}
+
+.action-outline-btn:hover {
+  background: rgba(251, 191, 36, 0.1);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+}
+
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE STYLES
+   ========================================== */
+
+@media (max-width: 768px) {
+  .premium-dark-footer {
+    padding: 2.5rem 1rem 1.2rem 1rem;
+  }
+
+  .footer-nav-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for navigation pills */
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .gold-pill-btn {
+    padding: 8px 10px;
+    font-size: 0.75rem; /* Smaller text size */
+    letter-spacing: 0.5px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .academy-title {
+    font-size: 1.8rem !important; /* Scaled down title */
+    margin-bottom: 0.8rem;
+  }
+
+  .academy-desc {
+    font-size: 0.9rem !important; /* Scaled down paragraph */
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    padding: 0 5px;
+  }
+
+  .action-buttons-wrapper {
+    flex-direction: column; /* Stack contact buttons vertically */
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .action-gold-btn, 
+  .action-outline-btn {
+    width: 100%; /* Full width touch targets */
+    padding: 12px 16px;
+    font-size: 0.88rem;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-nav-row {
+    grid-template-columns: repeat(2, 1fr); /* Fits comfortably on small screens */
+    gap: 0.5rem;
+  }
+
+  .gold-pill-btn {
+    padding: 7px 6px;
+    font-size: 0.7rem;
+  }
+
+  .academy-title {
+    font-size: 1.5rem !important;
+  }
+
+  .academy-desc {
+    font-size: 0.82rem !important;
+  }
+}
