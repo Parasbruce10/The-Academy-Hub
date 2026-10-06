@@ -3100,7 +3100,7 @@ const App = () => {
       </span>
     </a>
 
-  </div>
+  </div> 
 </div>
       </footer>
     </div>
