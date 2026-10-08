@@ -334,150 +334,193 @@ const App = () => {
                 </div>
               </div>
             )}
-            <div
-              style={{
-                position: 'relative',
-                width: '100%',
-                height: '80vh',
-                minHeight: '500px',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2)'
-              }}
-            >
-              {slides.map((slide, index) => (
-                <div
-                  key={slide.id}
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    opacity: index === currentSlide ? 1 : 0,
-                    transition: 'opacity 1s ease-in-out',
-                    backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.4)), url(${slide.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '0 5%'
-                  }}
-                >
-                  {/* Slide Content Box */}
-                  <div
-                    style={{
-                      maxWidth: '650px',
-                      color: '#ffffff',
-                      transform: index === currentSlide ? 'translateY(0)' : 'translateY(20px)',
-                      transition: 'transform 0.8s ease-out',
-                      fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif"
-                    }}
-                  >
-                    <span
-                      style={{
-                        display: 'inline-block',
-                        padding: '6px 16px',
-                        backgroundColor: '#2563eb',
-                        color: '#ffffff',
-                        borderRadius: '30px',
-                        fontSize: '13px',
-                        fontWeight: '700',
-                        letterSpacing: '1px',
-                        textTransform: 'uppercase',
-                        marginBottom: '15px'
-                      }}
-                    >
-                      {slide.tag}
-                    </span>
+            <>
+  <style>{`
+    @media (max-width: 768px) {
+      .responsive-hero-container {
+        height: 60vh !important;
+        min-height: 420px !important;
+        border-radius: 12px !important;
+      }
+      .responsive-hero-padding {
+        padding: 0 20px !important;
+      }
+      .responsive-hero-tag {
+        padding: 4px 12px !important;
+        font-size: 11px !important;
+        margin-bottom: 10px !important;
+      }
+      .responsive-hero-title {
+        font-size: 28px !important;
+        margin-bottom: 10px !important;
+      }
+      .responsive-hero-subtitle {
+        font-size: 14px !important;
+        margin-bottom: 18px !important;
+      }
+      .responsive-hero-btn {
+        padding: 10px 22px !important;
+        font-size: 14px !important;
+      }
+      .responsive-hero-dots {
+        bottom: 15px !important;
+      }
+    }
+  `}</style>
 
-                    <h1
-                      style={{
-                        fontSize: 'clamp(32px, 5vw, 52px)',
-                        fontWeight: '800',
-                        lineHeight: '1.15',
-                        margin: '0 0 15px 0',
-                        color: '#ffffff',
-                        textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-                      }}
-                    >
-                      {slide.title}
-                    </h1>
+  <div
+    className="responsive-hero-container"
+    style={{
+      position: 'relative',
+      width: '100%',
+      height: '80vh',
+      minHeight: '500px',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.2)'
+    }}
+  >
+    {slides.map((slide, index) => (
+      <div
+        key={slide.id}
+        className="responsive-hero-padding"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          opacity: index === currentSlide ? 1 : 0,
+          pointerEvents: index === currentSlide ? 'auto' : 'none',
+          transition: 'opacity 1s ease-in-out',
+          backgroundImage: `linear-gradient(to right, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.4)), url(${slide.image})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 5%'
+        }}
+      >
+        {/* Slide Content Box */}
+        <div
+          style={{
+            maxWidth: '650px',
+            color: '#ffffff',
+            transform: index === currentSlide ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'transform 0.8s ease-out',
+            fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif"
+          }}
+        >
+          <span
+            className="responsive-hero-tag"
+            style={{
+              display: 'inline-block',
+              padding: '6px 16px',
+              backgroundColor: '#2563eb',
+              color: '#ffffff',
+              borderRadius: '30px',
+              fontSize: '13px',
+              fontWeight: '700',
+              letterSpacing: '1px',
+              textTransform: 'uppercase',
+              marginBottom: '15px'
+            }}
+          >
+            {slide.tag}
+          </span>
 
-                    <p
-                      style={{
-                        fontSize: 'clamp(15px, 2vw, 18px)',
-                        color: '#e2e8f0',
-                        lineHeight: '1.6',
-                        marginBottom: '25px',
-                        maxWidth: '550px'
-                      }}
-                    >
-                      {slide.subtitle}
-                    </p>
+          <h1
+            className="responsive-hero-title"
+            style={{
+              fontSize: 'clamp(32px, 5vw, 52px)',
+              fontWeight: '800',
+              lineHeight: '1.15',
+              margin: '0 0 15px 0',
+              color: '#ffffff',
+              textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+            }}
+          >
+            {slide.title}
+          </h1>
 
-                    {/* Smooth Scroll Button */}
-                    <button
-                      onClick={() => {
-                        setActiveSection('programs');
-                        window.scrollTo({ top: 500, behavior: 'smooth' });
-                      }}
-                      style={{
-                        padding: '14px 32px',
-                        backgroundColor: '#ffffff',
-                        color: '#0f172a',
-                        border: 'none',
-                        borderRadius: '8px',
-                        fontSize: '16px',
-                        fontWeight: '700',
-                        cursor: 'pointer',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.2)',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = '#2563eb';
-                        e.currentTarget.style.color = '#ffffff';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = '#ffffff';
-                        e.currentTarget.style.color = '#0f172a';
-                      }}
-                    >
-                      Learn More ↓
-                    </button>
-                  </div>
-                </div>
-              ))}
+          <p
+            className="responsive-hero-subtitle"
+            style={{
+              fontSize: 'clamp(15px, 2vw, 18px)',
+              color: '#e2e8f0',
+              lineHeight: '1.6',
+              marginBottom: '25px',
+              maxWidth: '550px'
+            }}
+          >
+            {slide.subtitle}
+          </p>
 
-              {/* 2. Slider Navigation Dots */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '25px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  display: 'flex',
-                  gap: '10px',
-                  zIndex: 10
-                }}
-              >
-                {slides.map((_, dotIndex) => (
-                  <button
-                    key={dotIndex}
-                    onClick={() => setCurrentSlide(dotIndex)}
-                    style={{
-                      width: dotIndex === currentSlide ? '32px' : '10px',
-                      height: '10px',
-                      borderRadius: '5px',
-                      backgroundColor: dotIndex === currentSlide ? '#2563eb' : 'rgba(255, 255, 255, 0.6)',
-                      border: 'none',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease'
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+          {/* Smooth Scroll Button */}
+          <button
+            className="responsive-hero-btn"
+            onClick={() => {
+              setActiveSection('programs');
+              window.scrollTo({ top: 500, behavior: 'smooth' });
+            }}
+            style={{
+              padding: '14px 32px',
+              backgroundColor: '#ffffff',
+              color: '#0f172a',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: '700',
+              cursor: 'pointer',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.2)',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#2563eb';
+              e.currentTarget.style.color = '#ffffff';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.color = '#0f172a';
+            }}
+          >
+            Learn More ↓
+          </button>
+        </div>
+      </div>
+    ))}
+
+    {/* 2. Slider Navigation Dots */}
+    <div
+      className="responsive-hero-dots"
+      style={{
+        position: 'absolute',
+        bottom: '25px',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        display: 'flex',
+        gap: '10px',
+        zIndex: 10
+      }}
+    >
+      {slides.map((_, dotIndex) => (
+        <button
+          key={dotIndex}
+          onClick={() => setCurrentSlide(dotIndex)}
+          style={{
+            width: dotIndex === currentSlide ? '32px' : '10px',
+            height: '10px',
+            borderRadius: '5px',
+            backgroundColor: dotIndex === currentSlide ? '#2563eb' : 'rgba(255, 255, 255, 0.6)',
+            border: 'none',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+        />
+      ))}
+    </div>
+  </div>
+</>
             {/* Custom CSS Animation Keyframes for Smooth Floating Effect */}
             <style>{`
   @keyframes floatAnimation {
