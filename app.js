@@ -2630,138 +2630,150 @@ const App = () => {
               style={{
                 maxWidth: '1200px',
                 margin: '0 auto',
-                padding: '40px 20px',
+                padding: 'clamp(20px, 4vw, 40px) clamp(12px, 3vw, 20px)',
                 fontFamily: "'Inter', 'Segoe UI', Roboto, sans-serif"
               }}
             >
               {/* 1. Header Title (Centered) */}
               <div style={{
-  textAlign: 'center',
-  marginBottom: 'clamp(25px, 5vw, 35px)',
-  padding: '0 16px',
-  boxSizing: 'border-box'
-}}>
-  <h2 style={{
-    color: '#0f172a',
-    fontSize: 'clamp(22px, 5vw, 36px)',
-    fontWeight: '800',
-    margin: '0 0 10px 0',
-    lineHeight: '1.25'
-  }}>
-    Campus Life & Facilities Gallery
-  </h2>
-  <p style={{
-    color: '#475569',
-    fontSize: 'clamp(13px, 2vw, 18px)',
-    maxWidth: '750px',
-    margin: '0 auto',
-    lineHeight: '1.6'
-  }}>
-    Explore moments from our modern classrooms, high-tech science labs, athletic activities, and vibrant annual celebrations.
-  </p>
-  <div style={{
-    width: '70px',
-    height: '4px',
-    backgroundColor: '#2563eb',
-    margin: '16px auto 0 auto',
-    borderRadius: '2px'
-  }}></div>
-</div>
+                textAlign: 'center',
+                marginBottom: 'clamp(25px, 5vw, 35px)',
+                padding: '0 10px',
+                boxSizing: 'border-box'
+              }}>
+                <h2 style={{
+                  color: '#0f172a',
+                  fontSize: 'clamp(22px, 5vw, 36px)',
+                  fontWeight: '800',
+                  margin: '0 0 10px 0',
+                  lineHeight: '1.25'
+                }}>
+                  Campus Life & Facilities Gallery
+                </h2>
+                <p style={{
+                  color: '#475569',
+                  fontSize: 'clamp(13px, 2vw, 18px)',
+                  maxWidth: '750px',
+                  margin: '0 auto',
+                  lineHeight: '1.6'
+                }}>
+                  Explore moments from our modern classrooms, high-tech science labs, athletic activities, and vibrant annual celebrations.
+                </p>
+                <div style={{
+                  width: '70px',
+                  height: '4px',
+                  backgroundColor: '#2563eb',
+                  margin: '16px auto 0 auto',
+                  borderRadius: '2px'
+                }}></div>
+              </div>
 
               {/* 2. Category Filter Buttons */}
-              <>
-  {/* Category Filter Buttons */}
-  <div style={{
-    display: 'flex',
-    justify: 'center',
-    gap: 'clamp(6px, 1.5vw, 10px)',
-    flexWrap: 'wrap',
-    marginBottom: 'clamp(20px, 4vw, 35px)',
-    padding: '0 8px',
-    boxSizing: 'border-box'
-  }}>
-    {categories.map((cat) => (
-      <button
-        key={cat}
-        onClick={() => setSelectedCategory(cat)}
-        style={{
-          padding: 'clamp(6px, 1.5vw, 8px) clamp(14px, 3vw, 22px)',
-          borderRadius: '30px',
-          border: '1px solid #cbd5e1',
-          backgroundColor: selectedCategory === cat ? '#0f172a' : '#ffffff',
-          color: selectedCategory === cat ? '#ffffff' : '#334155',
-          fontWeight: '600',
-          fontSize: 'clamp(12px, 2vw, 14px)',
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          whiteSpace: 'nowrap'
-        }}
-      >
-        {cat}
-      </button>
-    ))}
-  </div>
+              <div style={{
+                display: 'flex',
+                justify: 'center',
+                gap: 'clamp(6px, 1.5vw, 10px)',
+                flexWrap: 'wrap',
+                marginBottom: 'clamp(20px, 4vw, 35px)',
+                padding: '0 4px',
+                boxSizing: 'border-box'
+              }}>
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    style={{
+                      padding: 'clamp(6px, 1.5vw, 8px) clamp(12px, 2.5vw, 22px)',
+                      borderRadius: '30px',
+                      border: '1px solid #cbd5e1',
+                      backgroundColor: selectedCategory === cat ? '#0f172a' : '#ffffff',
+                      color: selectedCategory === cat ? '#ffffff' : '#334155',
+                      fontWeight: '600',
+                      fontSize: 'clamp(12px, 1.8vw, 14px)',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
 
-  {/* Responsive Image Grid (Card Look) */}
-  <div style={{
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(230px, 100%, 280px), 1fr))',
-    gap: 'clamp(12px, 3vw, 20px)',
-    boxSizing: 'border-box'
-  }}>
-    {filteredImages.map((img) => (
-      <div
-        key={img.id}
-        onClick={() => setActiveImage(img)}
-        style={{
-          borderRadius: '12px',
-          overflow: 'hidden',
-          backgroundColor: '#ffffff',
-          border: '1px solid #e2e8f0',
-          boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-          cursor: 'pointer',
-          transition: 'transform 0.2s ease, boxShadow 0.2s ease',
-          boxSizing: 'border-box'
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-4px)';
-          e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
-        }}
-      >
-        <div style={{ position: 'relative', width: '100%', height: 'clamp(160px, 40vw, 200px)', backgroundColor: '#f1f5f9' }}>
-          <img
-            src={img.url}
-            alt={img.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-          />
-          <span style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            backgroundColor: 'rgba(15, 23, 42, 0.75)',
-            color: '#fff',
-            fontSize: '11px',
-            padding: '4px 10px',
-            borderRadius: '12px',
-            backdropFilter: 'blur(4px)',
-            WebkitBackdropFilter: 'blur(4px)'
-          }}>
-            {img.category}
-          </span>
-        </div>
-        <div style={{ padding: 'clamp(10px, 2.5vw, 15px)' }}>
-          <h4 style={{ margin: 0, color: '#0f172a', fontSize: 'clamp(13px, 2vw, 15px)', fontWeight: '700', lineHeight: '1.3' }}>
-            {img.title}
-          </h4>
-        </div>
-      </div>
-    ))}
-  </div>
-</>
+              {/* 3. Responsive Image Grid */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(clamp(250px, 100%, 280px), 1fr))',
+                gap: 'clamp(16px, 3vw, 24px)',
+                boxSizing: 'border-box'
+              }}>
+                {filteredImages.map((img) => (
+                  <div
+                    key={img.id}
+                    onClick={() => setActiveImage(img)}
+                    style={{
+                      borderRadius: '12px',
+                      overflow: 'hidden',
+                      backgroundColor: '#ffffff',
+                      border: '1px solid #e2e8f0',
+                      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s ease, boxShadow 0.2s ease',
+                      boxSizing: 'border-box',
+                      display: 'flex',
+                      flexDirection: 'column'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
+                    }}
+                  >
+                    <div style={{ 
+                      position: 'relative', 
+                      width: '100%', 
+                      aspectRatio: '4/3', 
+                      backgroundColor: '#f1f5f9',
+                      overflow: 'hidden' 
+                    }}>
+                      <img
+                        src={img.url}
+                        alt={img.title}
+                        loading="lazy"
+                        style={{ 
+                          width: '100%', 
+                          height: '100%', 
+                          objectFit: 'cover', 
+                          display: 'block' 
+                        }}
+                      />
+                      <span style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                        color: '#fff',
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        padding: '4px 10px',
+                        borderRadius: '12px',
+                        backdropFilter: 'blur(4px)',
+                        WebkitBackdropFilter: 'blur(4px)'
+                      }}>
+                        {img.category}
+                      </span>
+                    </div>
+                    <div style={{ padding: 'clamp(12px, 2.5vw, 16px)', flexGrow: 1, display: 'flex', alignItems: 'center' }}>
+                      <h4 style={{ margin: 0, color: '#0f172a', fontSize: 'clamp(14px, 2vw, 15px)', fontWeight: '700', lineHeight: '1.3' }}>
+                        {img.title}
+                      </h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
 
               {/* 4. Fullscreen Modal Lightbox View */}
               {activeImage && (
@@ -2773,13 +2785,14 @@ const App = () => {
                     left: 0,
                     width: '100vw',
                     height: '100vh',
-                    backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                    backgroundColor: 'rgba(15, 23, 42, 0.88)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     zIndex: 9999,
-                    padding: '20px',
-                    backdropFilter: 'blur(5px)'
+                    padding: 'clamp(12px, 3vw, 20px)',
+                    boxSizing: 'border-box',
+                    backdropFilter: 'blur(6px)'
                   }}
                 >
                   <div
@@ -2790,39 +2803,64 @@ const App = () => {
                       maxWidth: '850px',
                       width: '100%',
                       overflow: 'hidden',
-                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                      position: 'relative'
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.3)',
+                      position: 'relative',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      maxHeight: '90vh'
                     }}
                   >
                     <button
                       onClick={() => setActiveImage(null)}
                       style={{
                         position: 'absolute',
-                        top: '15px',
-                        right: '15px',
+                        top: '12px',
+                        right: '12px',
                         backgroundColor: '#0f172a',
                         color: '#ffffff',
                         border: 'none',
-                        width: '32px',
-                        height: '32px',
+                        width: '34px',
+                        height: '34px',
                         borderRadius: '50%',
                         cursor: 'pointer',
                         fontWeight: 'bold',
-                        fontSize: '16px'
+                        fontSize: '16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        zIndex: 10,
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)'
                       }}
                     >
                       ✕
                     </button>
-                    <img
-                      src={activeImage.url}
-                      alt={activeImage.title}
-                      style={{ width: '100%', maxHeight: '550px', objectFit: 'cover', display: 'block' }}
-                    />
-                    <div style={{ padding: '20px', backgroundColor: '#ffffff' }}>
-                      <span style={{ fontSize: '12px', color: '#2563eb', fontWeight: '700', textTransform: 'uppercase' }}>
+                    
+                    <div style={{
+                      width: '100%',
+                      backgroundColor: '#0f172a',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      maxHeight: '70vh',
+                      overflow: 'hidden'
+                    }}>
+                      <img
+                        src={activeImage.url}
+                        alt={activeImage.title}
+                        style={{ 
+                          width: '100%', 
+                          maxHeight: '70vh', 
+                          objectFit: 'contain', 
+                          display: 'block' 
+                        }}
+                      />
+                    </div>
+
+                    <div style={{ padding: 'clamp(14px, 3vw, 20px)', backgroundColor: '#ffffff' }}>
+                      <span style={{ fontSize: '12px', color: '#2563eb', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                         {activeImage.category}
                       </span>
-                      <h3 style={{ margin: '4px 0 0 0', color: '#0f172a', fontSize: '20px', fontWeight: '700' }}>
+                      <h3 style={{ margin: '4px 0 0 0', color: '#0f172a', fontSize: 'clamp(16px, 3vw, 20px)', fontWeight: '700' }}>
                         {activeImage.title}
                       </h3>
                     </div>
