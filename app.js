@@ -9,6 +9,46 @@ const App = () => {
 
   // Form submission tracking state
   const [isFormSubmitted, setIsFormSubmitted] = React.useState(false);
+// PWA Install State & Logic
+  const [deferredPrompt, setDeferredPrompt] = React.useState(null);
+    const [showInstallBtn, setShowInstallBtn] = React.useState(true);
+
+  React.useEffect(() => {
+    if (window.deferredInstallPrompt) {
+      setDeferredPrompt(window.deferredInstallPrompt);
+    }
+
+    const handleReady = () => setDeferredPrompt(window.deferredInstallPrompt);
+    const handleAppInstalled = () => {
+      window.deferredInstallPrompt = null;
+      setDeferredPrompt(null);
+      setShowInstallBtn(false);
+    };
+
+    window.addEventListener('installready', handleReady);
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    return () => {
+      window.removeEventListener('installready', handleReady);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    const promptEvent = window.deferredInstallPrompt;
+    if (promptEvent) {
+      promptEvent.prompt();
+      const { outcome } = await promptEvent.userChoice;
+      console.log('User response:', outcome);
+      window.deferredInstallPrompt = null;
+      setDeferredPrompt(null);
+      if (outcome === 'accepted') setShowInstallBtn(false);
+    } else {
+      alert("Install abhi available nahi. Browser menu (⋮) → 'Install app' / 'Add to Home screen' use karein.");
+    }
+  };
+
+  
 
   // Form Submit Handler Function
   const handleFormSubmit = async (e) => {
@@ -104,7 +144,32 @@ const App = () => {
   };
 
   return (
-    <div className="layout-container">
+        <div className="layout-container">
+      {/* Floating Install App Button */}
+      {showInstallBtn && (
+        <button
+          onClick={handleInstallClick}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 9999,
+            padding: '12px 20px',
+            background: '#1a365d',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '30px',
+            fontSize: '15px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            boxShadow: '0 4px 10px rgba(0,0,0,0.3)'
+          }}
+        >
+          📲 Install App
+        </button>
+      )}
+
+      {/* Top Yellow Running Ticker Strip */}
       {/* Top Yellow Running Ticker Strip */}
       <div className="top-ticker-bar">
         <div className="ticker-content">

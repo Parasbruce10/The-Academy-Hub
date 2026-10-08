@@ -14,38 +14,76 @@
   <!-- Open Graph (OG) Tags for Social Media Sharing -->
   <meta property="og:title" content="The Knowledge Hub Academy" />
   <meta property="og:description" content="Empowering minds, fostering the future. Join our academy for excellence in education." />
-  <meta property="og:image" content="https://theknowlegedhub.bookapexcode.store/logo.jpg" />
+  <meta property="og:image" content="https://theknowlegedhub.bookapexcode.store/logo.jpeg" />
   <meta property="og:url" content="https://theknowlegedhub.bookapexcode.store" />
 
   <!-- Favicon -->
   <link rel="icon" href="logo.jpeg" type="image/jpeg" />
 
   <!-- PWA Manifest for App Install -->
-  <link rel="manifest" href="manifest.json" />
+     <link rel="manifest" href="manifest.json" />
 
+  <script>
+    window.deferredInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', function (e) {
+      e.preventDefault();
+      window.deferredInstallPrompt = e;
+      window.dispatchEvent(new Event('installready'));
+    });
+  </script>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Install Button Styling */
+    .pwa-install-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #1a365d;
+      color: #ffffff;
+      border: none;
+      padding: 12px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .pwa-install-btn:hover {
+      background-color: #2b4c7e;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- Custom Install App Button (Default Hidden) -->
+  <button id="installAppBtn" class="pwa-install-btn" style="display: none;">
+    📲 Install App
+  </button>
+
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
   <script type="text/babel" src="app.js"></script>
-
-  <!-- Service Worker Registration (Required for App Install prompt) -->
+<!-- Service Worker Registration for PWA -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('Service Worker registered successfully:', registration.scope);
-          })
-          .catch(error => {
-            console.log('Service Worker registration failed:', error);
-          });
+          .then(reg => console.log('Service Worker Registered!'))
+          .catch(err => console.error('Service Worker Error:', err));
       });
     }
   </script>
+</body>
 </body>
 </html>
