@@ -148,25 +148,143 @@ const App = () => {
       {/* Floating Install App Button */}
       {showInstallBtn && (
         <button
-          onClick={handleInstallClick}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 9999,
-            padding: '12px 20px',
-            background: '#1a365d',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '30px',
-            fontSize: '15px',
-            fontWeight: '700',
-            cursor: 'pointer',
-            boxShadow: '0 4px 10px rgba(0,0,0,0.3)'
-          }}
-        >
-          📲 Install App
-        </button>
+  onClick={handleInstallClick}
+  style={{
+    position: 'fixed',
+    bottom: '24px',
+    right: '24px',
+    zIndex: 9999,
+    padding: 0,
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    perspective: '1000px',
+    outline: 'none'
+  }}
+>
+  {/* Card Container jo Hover pe Flip hoga */}
+  <div 
+    style={{
+      position: 'relative',
+      width: '165px',
+      height: '48px',
+      borderRadius: '50px',
+      transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+      transformStyle: 'preserve-3d'
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = 'rotateY(180deg) scale(1.05)';
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = 'rotateY(0deg) scale(1)';
+    }}
+  >
+    {/* FRONT SIDE (Install App + Glassmorphism + Snake Border) */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      borderRadius: '50px',
+      padding: '2px', // Snake border space
+      overflow: 'hidden',
+      backfaceVisibility: 'hidden',
+      WebkitBackfaceVisibility: 'hidden',
+      boxShadow: '0 12px 30px rgba(0, 0, 0, 0.08), 0 0 20px rgba(251, 191, 36, 0.25)'
+    }}>
+      {/* Snake Rotating Light */}
+      <div style={{
+        position: 'absolute',
+        inset: '-150%',
+        background: 'conic-gradient(from 0deg, transparent 70%, #fbbf24 85%, #f59e0b 100%)',
+        animation: 'snakeSpin 3s linear infinite',
+        zIndex: 0
+      }} />
+
+      {/* Glass Surface */}
+      <div style={{
+        position: 'relative',
+        zIndex: 1,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50px',
+        background: 'rgba(255, 255, 255, 0.75)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.9)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '8px',
+        boxSizing: 'border-box'
+      }}>
+        <span style={{ fontSize: '18px' }}>📱</span>
+        <span style={{
+          fontSize: '14px',
+          fontWeight: '800',
+          color: '#0f172a',
+          letterSpacing: '0.4px',
+          fontFamily: "'Inter', system-ui, sans-serif"
+        }}>
+          Install App
+        </span>
+      </div>
+    </div>
+
+    {/* BACK SIDE (Flip hony par "GET APP NOW" - Ultra Glass Gold Theme) */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      borderRadius: '50px',
+      padding: '2px',
+      overflow: 'hidden',
+      transform: 'rotateY(180deg)',
+      backfaceVisibility: 'hidden',
+      WebkitBackfaceVisibility: 'hidden',
+      boxShadow: '0 12px 30px rgba(245, 158, 11, 0.35)'
+    }}>
+      {/* Snake Light Backside */}
+      <div style={{
+        position: 'absolute',
+        inset: '-150%',
+        background: 'conic-gradient(from 0deg, transparent 70%, #ffffff 85%, #fef08a 100%)',
+        animation: 'snakeSpin 3s linear infinite',
+        zIndex: 0
+      }} />
+
+      {/* Gold Glass Surface */}
+      <div style={{
+        position: 'relative',
+        zIndex: 1,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50px',
+        background: 'linear-gradient(135deg, rgba(251, 191, 36, 0.9) 0%, rgba(245, 158, 11, 0.9) 100%)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255, 255, 255, 0.6)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        color: '#ffffff',
+        fontSize: '13px',
+        fontWeight: '900',
+        letterSpacing: '0.6px',
+        fontFamily: "'Inter', system-ui, sans-serif",
+        boxSizing: 'border-box'
+      }}>
+        <span>🚀</span> GET APP NOW
+      </div>
+    </div>
+
+    {/* Snake Animation Keyframes */}
+    <style>{`
+      @keyframes snakeSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    `}</style>
+  </div>
+</button>
       )}
 
       {/* Top Yellow Running Ticker Strip */}
@@ -2938,317 +3056,286 @@ const App = () => {
       </main>
 
       {/* Footer */}
-      <footer className="premium-dark-footer">
-
-        {/* Ambient Top Glow */}
-        <div className="footer-glow-bg"></div>
-
-        <div className="footer-content-wrapper">
-
-          {/* 1. TOP ROW: Premium Pill Navigation */}
-          <div className="footer-nav-row">
-            <a 
-  href="#about" 
-  onClick={(e) => { 
-    e.preventDefault(); 
-    setActiveSection('about'); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  }} 
-  className="gold-pill-btn"
->
-  About
-</a>
-            <a href="#contact" onClick={() => setActiveSection('admission')} className="gold-pill-btn">
-              Contact Us
-            </a>
-            <a 
-  href="#privacy" 
-  onClick={(e) => { 
-    e.preventDefault(); 
-    setActiveSection('privacy'); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  }} 
-  className="gold-pill-btn"
->
-  Privacy Policy
-</a>
-            <a 
-  href="#terms" 
-  onClick={(e) => { 
-    e.preventDefault(); 
-    setActiveSection('terms'); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  }} 
-  className="gold-pill-btn"
->
-  Terms & Conditions
-</a>
-          </div>
-
-          {/* Elegant Gold Divider */}
-          <div style={{ width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, #fbbf24, transparent)', marginBottom: '2rem', borderRadius: '50%' }}></div>
-
-          {/* 2. MIDDLE SECTION: Academy Info */}
-          <div style={{ textAlign: 'center', maxWidth: '800px', width: '100%', marginBottom: '2.5rem' }}>
-
-            {/* Premium Gradient Title */}
-            <h2 className="academy-title">
-              The Knowledge Hub Academy
-            </h2>
-
-            {/* Sophisticated Description */}
-            <p className="academy-desc">
-              Dedicated to cultivating intellectual brilliance, moral integrity, and modern leadership. We provide a transformative learning environment where students are empowered to shape the future with confidence.
-            </p>
-
-            {/* Modern Contact Buttons */}
-            <div className="action-buttons-wrapper">
-              <a href="https://wa.me/923362587880" target="_blank" rel="noreferrer" className="action-gold-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                </svg>
-                Chat on WhatsApp
-              </a>
-              <a href="https://facebook.com" target="_blank" rel="noreferrer" className="action-outline-btn">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-                </svg>
-                Facebook
-              </a>
-            </div>
-          </div>
-
-          {/* 3. BOTTOM BAR: Copyright Line */}
-          <div style={{ width: '100%', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
-            <p style={{ margin: 0, color: '#64748b', fontSize: '0.82rem', fontWeight: '500', letterSpacing: '0.3px', textAlign: 'center' }}>
-              Copyright © {new Date().getFullYear()} <span style={{ color: '#fbbf24', fontWeight: '700' }}>The Knowledge Hub Academy</span>. All Rights Reserved.
-            </p>
-          </div>
-
-        </div>
-        {/* ================= SLEEK & ELEGANT DEVELOPER FOOTER STRIP ================= */}
-<div style={{
-  width: '100%',
-  marginTop: '24px',
-  padding: '16px 20px',
-  background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(24, 9, 43, 0.9) 100%)',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  borderRadius: '20px',
-  border: '1px solid rgba(168, 85, 247, 0.35)',
-  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(168, 85, 247, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.15)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
-  gap: '16px',
-  boxSizing: 'border-box',
-  fontFamily: "'Inter', system-ui, -apple-system, sans-serif"
+      <footer style={{
+  position: 'relative',
+  background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
+  padding: '4rem 2rem 2rem',
+  overflow: 'hidden',
+  fontFamily: "'Inter', system-ui, sans-serif",
+  color: '#334155',
+  borderTop: '1px solid rgba(0,0,0,0.05)'
 }}>
-  {/* Branding Section */}
-  <div style={{ 
-    display: 'flex', 
-    alignItems: 'center', 
-    gap: '12px',
-    minWidth: '220px',
-    flex: '1 1 auto'
-  }}>
-    {/* Ultra Glow Multi-layer Logo Wrapper */}
-    <div style={{
-      position: 'relative',
-      width: '40px',
-      height: '40px',
-      display: 'grid',
-      placeItems: 'center',
-      flexShrink: 0
-    }}>
-      <div style={{
-        position: 'absolute',
-        inset: '-3px',
-        borderRadius: '50%',
-        background: 'linear-gradient(135deg, #a855f7, #6366f1, #ec4899)',
-        filter: 'blur(8px)',
-        opacity: 0.85
-      }} />
-      <div style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        background: 'linear-gradient(135deg, #a855f7 0%, #6366f1 100%)',
-        padding: '2px',
-        boxSizing: 'border-box'
-      }}>
-        <img 
-          src="header.jpeg" 
-          alt="Apex Code Logo"
+  
+  {/* Ambient Top Glow (Subtle Gold/Light) */}
+  <div style={{
+    position: 'absolute',
+    top: '-100px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '600px',
+    height: '200px',
+    background: 'radial-gradient(ellipse, rgba(251, 191, 36, 0.15) 0%, transparent 70%)',
+    pointerEvents: 'none'
+  }}></div>
+
+  <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+
+    {/* 1. TOP ROW: Premium Pill Navigation */}
+    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+      {['About', 'Contact Us', 'Privacy Policy', 'Terms & Conditions'].map((item, idx) => (
+        <a 
+          key={idx}
+          href={`#${item.toLowerCase().replace(/ /g, '')}`}
+          onClick={(e) => { 
+            e.preventDefault(); 
+            setActiveSection(item.toLowerCase() === 'contact us' ? 'admission' : item.toLowerCase()); 
+            window.scrollTo({ top: 0, behavior: 'smooth' }); 
+          }} 
           style={{
-            width: '100%',
-            height: '100%',
-            borderRadius: '50%',
-            objectFit: 'cover',
-            display: 'block'
+            padding: '10px 24px',
+            borderRadius: '50px',
+            background: '#ffffff',
+            color: '#475569',
+            fontSize: '0.9rem',
+            fontWeight: '600',
+            textDecoration: 'none',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
+            border: '1px solid rgba(0,0,0,0.02)',
+            transition: 'all 0.3s ease',
           }}
-        />
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.color = '#d97706';
+            e.currentTarget.style.boxShadow = '0 8px 25px rgba(251, 191, 36, 0.15)';
+            e.currentTarget.style.borderColor = 'rgba(251, 191, 36, 0.3)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.color = '#475569';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.04)';
+            e.currentTarget.style.borderColor = 'rgba(0,0,0,0.02)';
+          }}
+        >
+          {item}
+        </a>
+      ))}
+    </div>
+
+    {/* Elegant Gold Divider */}
+    <div style={{ margin: '0 auto 2.5rem', width: '80px', height: '3px', background: 'linear-gradient(90deg, transparent, #fbbf24, transparent)', borderRadius: '50%' }}></div>
+
+    {/* 2. MIDDLE SECTION: Academy Info */}
+    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3.5rem' }}>
+      
+      <h2 style={{ 
+        fontSize: '2.5rem', 
+        fontWeight: '800', 
+        marginBottom: '1rem',
+        background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        letterSpacing: '-0.5px'
+      }}>
+        The Knowledge Hub Academy
+      </h2>
+      
+      <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#64748b', marginBottom: '2rem' }}>
+        Dedicated to cultivating intellectual brilliance, moral integrity, and modern leadership. We provide a transformative learning environment where students are empowered to shape the future with confidence.
+      </p>
+
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
+        <a href="https://wa.me/923362587880" target="_blank" rel="noreferrer" style={{
+          display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 28px',
+          background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
+          color: '#fff', borderRadius: '50px', textDecoration: 'none', fontWeight: '600',
+          boxShadow: '0 10px 25px rgba(245, 158, 11, 0.3)', transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+        onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
+          Chat on WhatsApp
+        </a>
+        
+        <a href="https://facebook.com" target="_blank" rel="noreferrer" style={{
+          display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 28px',
+          background: '#ffffff', color: '#0f172a', border: '1px solid #e2e8f0',
+          borderRadius: '50px', textDecoration: 'none', fontWeight: '600',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.02)', transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.transform = 'translateY(-2px)'}}
+        onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.transform = 'translateY(0)'}}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+          </svg>
+          Facebook
+        </a>
       </div>
     </div>
 
-    {/* Brand Titles */}
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <span style={{ 
-        fontSize: '9px', 
-        textTransform: 'uppercase', 
-        color: '#94a3b8', 
-        letterSpacing: '1.2px', 
-        fontWeight: '700',
-        lineHeight: '1.2'
-      }}>
-        Crafted & Developed By
-      </span>
-      <strong style={{
-        color: '#ffffff',
-        fontSize: '15px',
-        letterSpacing: '1.2px',
-        fontWeight: '900',
-        background: 'linear-gradient(90deg, #ffffff 0%, #cbd5e1 100%)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.5))'
-      }}>
-        APEX CODE<span style={{ color: '#a855f7', WebkitTextFillColor: '#a855f7' }}>.</span>
-      </strong>
+    {/* 3. BOTTOM BAR: Copyright Line */}
+    <div style={{ width: '100%', borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '1.5rem', paddingBottom: '1rem', textAlign: 'center' }}>
+      <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.85rem', fontWeight: '500', letterSpacing: '0.3px' }}>
+        Copyright © {new Date().getFullYear()} <span style={{ color: '#d97706', fontWeight: '700' }}>The Knowledge Hub Academy</span>. All Rights Reserved.
+      </p>
+    </div>
+
+    {/* ================= SLEEK & ELEGANT DEVELOPER FOOTER STRIP (WHITE & GOLD EDITION) ================= */}
+    <div style={{
+      width: '100%',
+      marginTop: '16px',
+      padding: '16px 20px',
+      background: 'rgba(255, 255, 255, 0.7)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderRadius: '20px',
+      border: '1px solid rgba(255, 255, 255, 1)',
+      boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      gap: '16px',
+      boxSizing: 'border-box'
+    }}>
+      
+      {/* Branding Section */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: '220px', flex: '1 1 auto' }}>
+        {/* Ultra Glow Multi-layer Logo Wrapper (Gold/Silver) */}
+        <div style={{ position: 'relative', width: '42px', height: '42px', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+          <div style={{
+            position: 'absolute', inset: '-3px', borderRadius: '50%',
+            background: 'linear-gradient(135deg, #fbbf24, #f59e0b, #fcd34d)',
+            filter: 'blur(6px)', opacity: 0.6
+          }} />
+          <div style={{
+            position: 'relative', width: '100%', height: '100%', borderRadius: '50%',
+            background: 'linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%)',
+            padding: '2px', boxSizing: 'border-box', boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+          }}>
+            <img 
+              src="header.jpeg" 
+              alt="Apex Code Logo"
+              style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+        </div>
+
+        {/* Brand Titles */}
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <span style={{ fontSize: '9px', textTransform: 'uppercase', color: '#64748b', letterSpacing: '1.2px', fontWeight: '700', lineHeight: '1.2' }}>
+            Crafted & Developed By
+          </span>
+          <strong style={{
+            color: '#0f172a', fontSize: '15px', letterSpacing: '1.2px', fontWeight: '900',
+            background: 'linear-gradient(90deg, #0f172a 0%, #475569 100%)',
+            WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+          }}>
+            APEX CODE<span style={{ color: '#d97706', WebkitTextFillColor: '#d97706' }}>.</span>
+          </strong>
+        </div>
+      </div>
+
+      {/* Contact Info Responsive Grid / Flex Container */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', flex: '2 1 300px', justifyContent: 'flex-start' }}>
+        
+        {/* Website Link */}
+        <a 
+          href="https://www.bookapexcode.store" 
+          target="_blank" 
+          rel="noreferrer" 
+          style={{
+            display: 'flex', flexDirection: 'column', padding: '8px 14px', borderRadius: '12px',
+            background: '#ffffff', border: '1px solid rgba(251, 191, 36, 0.4)',
+            textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)', flex: '1 1 180px', boxSizing: 'border-box'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#fffbeb';
+            e.currentTarget.style.borderColor = '#fbbf24';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(251, 191, 36, 0.15)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(251, 191, 36, 0.4)';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.03)';
+          }}
+        >
+          <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#d97706', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
+            🌐 Website
+          </span>
+          <span style={{ fontSize: '11.5px', color: '#1e293b', fontWeight: '700', letterSpacing: '0.2px', wordBreak: 'break-word' }}>
+            www.bookapexcode.store
+          </span>
+        </a>
+
+        {/* Email Link */}
+        <a 
+          href="mailto:book.apexcode@gmail.com" 
+          style={{
+            display: 'flex', flexDirection: 'column', padding: '8px 14px', borderRadius: '12px',
+            background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.04)',
+            textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)', flex: '1 1 180px', boxSizing: 'border-box'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#f8fafc';
+            e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.06)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.04)';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.03)';
+          }}
+        >
+          <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
+            ✉️ Email Us
+          </span>
+          <span style={{ fontSize: '11.5px', color: '#1e293b', fontWeight: '700', letterSpacing: '0.2px', wordBreak: 'break-all' }}>
+            book.apexcode@gmail.com
+          </span>
+        </a>
+
+        {/* Phone Link */}
+        <a 
+          href="tel:03421287734" 
+          style={{
+            display: 'flex', flexDirection: 'column', padding: '8px 14px', borderRadius: '12px',
+            background: '#ffffff', border: '1px solid rgba(0, 0, 0, 0.04)',
+            textDecoration: 'none', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.03)', flex: '1 1 130px', boxSizing: 'border-box'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#f8fafc';
+            e.currentTarget.style.borderColor = 'rgba(0,0,0,0.1)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.06)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(0, 0, 0, 0.04)';
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.03)';
+          }}
+        >
+          <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
+            📞 Contact
+          </span>
+          <span style={{ fontSize: '11.5px', color: '#1e293b', fontWeight: '700', letterSpacing: '0.2px' }}>
+            0342-1287734
+          </span>
+        </a>
+
+      </div> 
     </div>
   </div>
-
-  {/* Contact Info Responsive Grid / Flex Container */}
-  <div style={{ 
-    display: 'flex', 
-    alignItems: 'center', 
-    gap: '10px', 
-    flexWrap: 'wrap',
-    flex: '2 1 300px',
-    justifyContent: 'flex-start'
-  }}>
-    
-    {/* Website Link */}
-    <a 
-      href="https://www.bookapexcode.store" 
-      target="_blank" 
-      rel="noreferrer" 
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '8px 14px',
-        borderRadius: '12px',
-        background: 'rgba(168, 85, 247, 0.1)',
-        border: '1px solid rgba(168, 85, 247, 0.35)',
-        textDecoration: 'none',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        backdropFilter: 'blur(6px)',
-        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.25)',
-        flex: '1 1 180px',
-        boxSizing: 'border-box'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.25)';
-        e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.8)';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 20px rgba(168, 85, 247, 0.4)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.1)';
-        e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.35)';
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
-      }}
-    >
-      <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#c084fc', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
-        🌐 Website
-      </span>
-      <span style={{ fontSize: '11.5px', color: '#ffffff', fontWeight: '700', letterSpacing: '0.2px', wordBreak: 'break-word' }}>
-        www.bookapexcode.store
-      </span>
-    </a>
-
-    {/* Email Link */}
-    <a 
-      href="mailto:book.apexcode@gmail.com" 
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '8px 14px',
-        borderRadius: '12px',
-        background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        textDecoration: 'none',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        backdropFilter: 'blur(6px)',
-        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.25)',
-        flex: '1 1 180px',
-        boxSizing: 'border-box'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.22)';
-        e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.7)';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 20px rgba(168, 85, 247, 0.35)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
-      }}
-    >
-      <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#94a3b8', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
-        ✉️ Email Us
-      </span>
-      <span style={{ fontSize: '11.5px', color: '#e2e8f0', fontWeight: '700', letterSpacing: '0.2px', wordBreak: 'break-all' }}>
-        book.apexcode@gmail.com
-      </span>
-    </a>
-
-    {/* Phone Link */}
-    <a 
-      href="tel:03421287734" 
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '8px 14px',
-        borderRadius: '12px',
-        background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.12)',
-        textDecoration: 'none',
-        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-        backdropFilter: 'blur(6px)',
-        boxShadow: '0 4px 15px rgba(0, 0, 0, 0.25)',
-        flex: '1 1 130px',
-        boxSizing: 'border-box'
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.background = 'rgba(168, 85, 247, 0.22)';
-        e.currentTarget.style.borderColor = 'rgba(168, 85, 247, 0.7)';
-        e.currentTarget.style.transform = 'translateY(-2px)';
-        e.currentTarget.style.boxShadow = '0 6px 20px rgba(168, 85, 247, 0.35)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.25)';
-      }}
-    >
-      <span style={{ fontSize: '8.5px', textTransform: 'uppercase', color: '#94a3b8', fontWeight: '800', letterSpacing: '0.8px', marginBottom: '2px' }}>
-        📞 Contact
-      </span>
-      <span style={{ fontSize: '11.5px', color: '#e2e8f0', fontWeight: '700', letterSpacing: '0.2px' }}>
-        0342-1287734
-      </span>
-    </a>
-
-  </div> 
-</div>
-      </footer>
+</footer>
     </div>
   );
 };
