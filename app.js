@@ -3059,11 +3059,13 @@ const App = () => {
       <footer style={{
   position: 'relative',
   background: 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
-  padding: '4rem 2rem 2rem',
+  padding: 'clamp(2rem, 5vw, 4rem) clamp(1rem, 3vw, 2rem) 2rem', // Responsive padding
   overflow: 'hidden',
   fontFamily: "'Inter', system-ui, sans-serif",
   color: '#334155',
-  borderTop: '1px solid rgba(0,0,0,0.05)'
+  borderTop: '1px solid rgba(0,0,0,0.05)',
+  boxSizing: 'border-box',
+  width: '100%'
 }}>
   
   {/* Ambient Top Glow (Subtle Gold/Light) */}
@@ -3072,7 +3074,8 @@ const App = () => {
     top: '-100px',
     left: '50%',
     transform: 'translateX(-50%)',
-    width: '600px',
+    width: '100%',
+    maxWidth: '600px',
     height: '200px',
     background: 'radial-gradient(ellipse, rgba(251, 191, 36, 0.15) 0%, transparent 70%)',
     pointerEvents: 'none'
@@ -3081,7 +3084,7 @@ const App = () => {
   <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
 
     {/* 1. TOP ROW: Premium Pill Navigation */}
-    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(0.5rem, 2vw, 1rem)', flexWrap: 'wrap', marginBottom: 'clamp(1.5rem, 4vw, 3rem)' }}>
       {['About', 'Contact Us', 'Privacy Policy', 'Terms & Conditions'].map((item, idx) => (
         <a 
           key={idx}
@@ -3092,16 +3095,17 @@ const App = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' }); 
           }} 
           style={{
-            padding: '10px 24px',
+            padding: 'clamp(8px, 2vw, 10px) clamp(16px, 3vw, 24px)',
             borderRadius: '50px',
             background: '#ffffff',
             color: '#475569',
-            fontSize: '0.9rem',
+            fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
             fontWeight: '600',
             textDecoration: 'none',
             boxShadow: '0 4px 15px rgba(0, 0, 0, 0.04)',
             border: '1px solid rgba(0,0,0,0.02)',
             transition: 'all 0.3s ease',
+            textAlign: 'center'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = 'translateY(-2px)';
@@ -3122,15 +3126,15 @@ const App = () => {
     </div>
 
     {/* Elegant Gold Divider */}
-    <div style={{ margin: '0 auto 2.5rem', width: '80px', height: '3px', background: 'linear-gradient(90deg, transparent, #fbbf24, transparent)', borderRadius: '50%' }}></div>
+    <div style={{ margin: '0 auto clamp(1.5rem, 4vw, 2.5rem)', width: '80px', height: '3px', background: 'linear-gradient(90deg, transparent, #fbbf24, transparent)', borderRadius: '50%' }}></div>
 
     {/* 2. MIDDLE SECTION: Academy Info */}
-    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3.5rem' }}>
+    <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto clamp(2rem, 5vw, 3.5rem)' }}>
       
       <h2 style={{ 
-        fontSize: '2.5rem', 
+        fontSize: 'clamp(1.8rem, 5vw, 2.5rem)', 
         fontWeight: '800', 
-        marginBottom: '1rem',
+        marginBottom: 'clamp(0.5rem, 2vw, 1rem)',
         background: 'linear-gradient(135deg, #0f172a 0%, #334155 100%)',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -3139,16 +3143,25 @@ const App = () => {
         The Knowledge Hub Academy
       </h2>
       
-      <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#64748b', marginBottom: '2rem' }}>
+      <p style={{ 
+        fontSize: 'clamp(0.9rem, 2.5vw, 1.05rem)', 
+        lineHeight: '1.7', 
+        color: '#64748b', 
+        marginBottom: 'clamp(1.5rem, 4vw, 2rem)',
+        padding: '0 10px'
+      }}>
         Dedicated to cultivating intellectual brilliance, moral integrity, and modern leadership. We provide a transformative learning environment where students are empowered to shape the future with confidence.
       </p>
 
       <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
         <a href="https://wa.me/923362587880" target="_blank" rel="noreferrer" style={{
-          display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 28px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', 
+          padding: 'clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 28px)',
           background: 'linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)',
           color: '#fff', borderRadius: '50px', textDecoration: 'none', fontWeight: '600',
-          boxShadow: '0 10px 25px rgba(245, 158, 11, 0.3)', transition: 'all 0.3s ease'
+          fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+          boxShadow: '0 10px 25px rgba(245, 158, 11, 0.3)', transition: 'all 0.3s ease',
+          flex: '1 1 200px', maxWidth: '300px', boxSizing: 'border-box'
         }}
         onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
         onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}>
@@ -3159,10 +3172,13 @@ const App = () => {
         </a>
         
         <a href="https://facebook.com" target="_blank" rel="noreferrer" style={{
-          display: 'flex', alignItems: 'center', gap: '8px', padding: '12px 28px',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', 
+          padding: 'clamp(10px, 2.5vw, 12px) clamp(20px, 4vw, 28px)',
           background: '#ffffff', color: '#0f172a', border: '1px solid #e2e8f0',
           borderRadius: '50px', textDecoration: 'none', fontWeight: '600',
-          boxShadow: '0 4px 15px rgba(0,0,0,0.02)', transition: 'all 0.3s ease'
+          fontSize: 'clamp(0.85rem, 2vw, 1rem)',
+          boxShadow: '0 4px 15px rgba(0,0,0,0.02)', transition: 'all 0.3s ease',
+          flex: '1 1 200px', maxWidth: '300px', boxSizing: 'border-box'
         }}
         onMouseEnter={(e) => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.transform = 'translateY(-2px)'}}
         onMouseLeave={(e) => { e.currentTarget.style.background = '#ffffff'; e.currentTarget.style.transform = 'translateY(0)'}}>
@@ -3176,246 +3192,228 @@ const App = () => {
 
     {/* 3. BOTTOM BAR: Copyright Line */}
     <div style={{ width: '100%', borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '1.5rem', paddingBottom: '1rem', textAlign: 'center' }}>
-      <p style={{ margin: 0, color: '#94a3b8', fontSize: '0.85rem', fontWeight: '500', letterSpacing: '0.3px' }}>
+      <p style={{ margin: 0, color: '#94a3b8', fontSize: 'clamp(0.75rem, 2vw, 0.85rem)', fontWeight: '500', letterSpacing: '0.3px' }}>
         Copyright © {new Date().getFullYear()} <span style={{ color: '#d97706', fontWeight: '700' }}>The Knowledge Hub Academy</span>. All Rights Reserved.
       </p>
     </div>
 
-    {/* ================= SLEEK & ELEGANT DEVELOPER FOOTER STRIP (WHITE & GOLD EDITION) ================= */}
+    {/* ================= SLEEK & ELEGANT DEVELOPER FOOTER STRIP ================= */}
     <div style={{
       width: '100%',
       marginTop: '16px',
-      padding: '16px 20px',
-      background: 'rgba(255, 255, 255, 0.7)',
+      padding: 'clamp(14px, 3vw, 20px)',
+      background: 'rgba(255, 255, 255, 0.75)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
       borderRadius: '20px',
       border: '1px solid rgba(255, 255, 255, 1)',
       boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1)',
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      flexWrap: 'wrap',
+      flexDirection: 'column',
       gap: '16px',
       boxSizing: 'border-box'
     }}>
-      
-      {/* ================= SLEEK & ELEGANT DEVELOPER FOOTER STRIP ================= */}
-<div style={{
-  width: '100%',
-  marginTop: '16px',
-  padding: '20px',
-  background: 'rgba(255, 255, 255, 0.75)',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  borderRadius: '20px',
-  border: '1px solid rgba(255, 255, 255, 1)',
-  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1)',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '16px',
-  boxSizing: 'border-box'
-}}>
 
-  {/* Collaboration Header */}
-  <div style={{ textAlign: 'center', width: '100%' }}>
-    <span style={{ 
-      fontSize: '10px', 
-      textTransform: 'uppercase', 
-      color: '#d97706', 
-      letterSpacing: '1.5px', 
-      fontWeight: '800', 
-      lineHeight: '1.2' 
-    }}>
-      🤝 Designed & Developed In Collaboration With
-    </span>
-  </div>
+      {/* Collaboration Header */}
+      <div style={{ textAlign: 'center', width: '100%' }}>
+        <span style={{ 
+          fontSize: 'clamp(8px, 2vw, 10px)', 
+          textTransform: 'uppercase', 
+          color: '#d97706', 
+          letterSpacing: '1px', 
+          fontWeight: '800', 
+          lineHeight: '1.4' 
+        }}>
+          🤝 Designed & Developed In Collaboration With
+        </span>
+      </div>
 
-  {/* Main Grid: Apex Code & Zarvix Digital Columns */}
-  <div style={{ 
-    display: 'flex', 
-    alignItems: 'stretch', 
-    justifyContent: 'space-between', 
-    flexWrap: 'wrap', 
-    gap: '20px',
-    width: '100%'
-  }}>
-    
-    {/* 1. APEX CODE SECTION */}
-    <div style={{ 
-      flex: '1 1 340px', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      gap: '12px',
-      padding: '14px',
-      background: 'rgba(255, 255, 255, 0.6)',
-      borderRadius: '16px',
-      border: '1px solid rgba(251, 191, 36, 0.3)'
-    }}>
-      {/* Logo & Title */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ position: 'relative', width: '40px', height: '40px', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
-          <div style={{
-            position: 'absolute', inset: '-2px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
-            filter: 'blur(5px)', opacity: 0.6
-          }} />
-          <div style={{
-            position: 'relative', width: '100%', height: '100%', borderRadius: '50%',
-            background: '#ffffff', padding: '2px', boxSizing: 'border-box', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            <img 
-              src="header.jpeg" 
-              alt="Apex Code Logo"
-              style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
-            />
+      {/* Main Grid: Apex Code & Zarvix Digital Columns */}
+      <div style={{ 
+        display: 'flex', 
+        alignItems: 'stretch', 
+        justifyContent: 'center', 
+        flexWrap: 'wrap', 
+        gap: '16px',
+        width: '100%'
+      }}>
+        
+        {/* 1. APEX CODE SECTION */}
+        <div style={{ 
+          flex: '1 1 100%', 
+          maxWidth: '500px', // Prevents it from being too wide on tablets
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '12px',
+          padding: 'clamp(10px, 3vw, 14px)',
+          background: 'rgba(255, 255, 255, 0.6)',
+          borderRadius: '16px',
+          border: '1px solid rgba(251, 191, 36, 0.3)',
+          boxSizing: 'border-box'
+        }}>
+          {/* Logo & Title */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ position: 'relative', width: '36px', height: '36px', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+              <div style={{
+                position: 'absolute', inset: '-2px', borderRadius: '50%',
+                background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                filter: 'blur(4px)', opacity: 0.6
+              }} />
+              <div style={{
+                position: 'relative', width: '100%', height: '100%', borderRadius: '50%',
+                background: '#ffffff', padding: '2px', boxSizing: 'border-box', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="header.jpeg" 
+                  alt="Apex Code Logo"
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            </div>
+
+            <strong style={{
+              color: '#0f172a', fontSize: 'clamp(13px, 2.5vw, 15px)', letterSpacing: '1px', fontWeight: '900',
+              background: 'linear-gradient(90deg, #0f172a 0%, #475569 100%)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            }}>
+              APEX CODE<span style={{ color: '#d97706', WebkitTextFillColor: '#d97706' }}>.</span>
+            </strong>
+          </div>
+
+          {/* Apex Code Links */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '8px' }}>
+            {/* Website */}
+            <a 
+              href="https://www.bookapexcode.store" 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(251, 191, 36, 0.4)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#d97706', fontWeight: '800', display: 'block' }}>🌐 Website</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>www.bookapexcode.store</span>
+            </a>
+
+            {/* Email */}
+            <a 
+              href="mailto:book.apexcode@gmail.com" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>✉️ Email</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>book.apexcode@gmail.com</span>
+            </a>
+
+            {/* Contact */}
+            <a 
+              href="tel:03421287734" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>📞 Call</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700' }}>0342-1287734</span>
+            </a>
           </div>
         </div>
 
-        <strong style={{
-          color: '#0f172a', fontSize: '15px', letterSpacing: '1px', fontWeight: '900',
-          background: 'linear-gradient(90deg, #0f172a 0%, #475569 100%)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+        {/* 2. ZARVIX DIGITAL SECTION */}
+        <div style={{ 
+          flex: '1 1 100%', 
+          maxWidth: '500px', // Prevents it from being too wide on tablets
+          display: 'flex', 
+          flexDirection: 'column', 
+          gap: '12px',
+          padding: 'clamp(10px, 3vw, 14px)',
+          background: 'rgba(255, 255, 255, 0.6)',
+          borderRadius: '16px',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          boxSizing: 'border-box'
         }}>
-          APEX CODE<span style={{ color: '#d97706', WebkitTextFillColor: '#d97706' }}>.</span>
-        </strong>
-      </div>
+          {/* Logo & Title */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ position: 'relative', width: '36px', height: '36px', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
+              <div style={{
+                position: 'absolute', inset: '-2px', borderRadius: '50%',
+                background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
+                filter: 'blur(4px)', opacity: 0.5
+              }} />
+              <div style={{
+                position: 'relative', width: '100%', height: '100%', borderRadius: '50%',
+                background: '#ffffff', padding: '2px', boxSizing: 'border-box', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="zarvix.jpeg" 
+                  alt="Zarvix Digital Logo"
+                  style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
+                />
+              </div>
+            </div>
 
-      {/* Apex Code Links */}
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {/* Website */}
-        <a 
-          href="https://www.bookapexcode.store" 
-          target="_blank" 
-          rel="noreferrer" 
-          style={{
-            flex: '1 1 120px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(251, 191, 36, 0.4)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#d97706', fontWeight: '800', display: 'block' }}>🌐 Website</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>www.bookapexcode.store</span>
-        </a>
+            <strong style={{
+              color: '#0f172a', fontSize: 'clamp(13px, 2.5vw, 15px)', letterSpacing: '1px', fontWeight: '900',
+              background: 'linear-gradient(90deg, #0f172a 0%, #3b82f6 100%)',
+              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+            }}>
+              ZARVIX DIGITAL<span style={{ color: '#3b82f6', WebkitTextFillColor: '#3b82f6' }}>.</span>
+            </strong>
+          </div>
 
-        {/* Email */}
-        <a 
-          href="mailto:book.apexcode@gmail.com" 
-          style={{
-            flex: '1 1 120px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>✉️ Email</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>book.apexcode@gmail.com</span>
-        </a>
+          {/* Zarvix Digital Links */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '8px' }}>
+            {/* Website */}
+            <a 
+              href="https://www.zarvixdigital.com" 
+              target="_blank" 
+              rel="noreferrer" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(59, 130, 246, 0.4)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#2563eb', fontWeight: '800', display: 'block' }}>🌐 Website</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>www.zarvixdigital.com</span>
+            </a>
 
-        {/* Contact */}
-        <a 
-          href="tel:03421287734" 
-          style={{
-            flex: '1 1 90px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>📞 Call</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700' }}>0342-1287734</span>
-        </a>
-      </div>
-    </div>
+            {/* Email */}
+            <a 
+              href="mailto:Info@zarvixdigital.com" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>✉️ Email</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>Info@zarvixdigital.com</span>
+            </a>
 
-    {/* 2. ZARVIX DIGITAL SECTION */}
-    <div style={{ 
-      flex: '1 1 340px', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      gap: '12px',
-      padding: '14px',
-      background: 'rgba(255, 255, 255, 0.6)',
-      borderRadius: '16px',
-      border: '1px solid rgba(59, 130, 246, 0.3)'
-    }}>
-      {/* Logo & Title */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        <div style={{ position: 'relative', width: '40px', height: '40px', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
-          <div style={{
-            position: 'absolute', inset: '-2px', borderRadius: '50%',
-            background: 'linear-gradient(135deg, #3b82f6, #06b6d4)',
-            filter: 'blur(5px)', opacity: 0.5
-          }} />
-          <div style={{
-            position: 'relative', width: '100%', height: '100%', borderRadius: '50%',
-            background: '#ffffff', padding: '2px', boxSizing: 'border-box', boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-          }}>
-            <img 
-              src="zarvix.jpeg" 
-              alt="Zarvix Digital Logo"
-              style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', display: 'block' }}
-            />
+            {/* Contact */}
+            <a 
+              href="tel:03147844214" 
+              style={{
+                padding: '8px', borderRadius: '10px',
+                background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
+                textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
+              }}
+            >
+              <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>📞 Call</span>
+              <span style={{ fontSize: 'clamp(9px, 1.8vw, 11px)', color: '#1e293b', fontWeight: '700' }}>0314-7844214</span>
+            </a>
           </div>
         </div>
 
-        <strong style={{
-          color: '#0f172a', fontSize: '15px', letterSpacing: '1px', fontWeight: '900',
-          background: 'linear-gradient(90deg, #0f172a 0%, #3b82f6 100%)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-        }}>
-          ZARVIX DIGITAL<span style={{ color: '#3b82f6', WebkitTextFillColor: '#3b82f6' }}>.</span>
-        </strong>
-      </div>
-
-      {/* Zarvix Digital Links */}
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        {/* Website */}
-        <a 
-          href="https://www.zarvixdigital.com" 
-          target="_blank" 
-          rel="noreferrer" 
-          style={{
-            flex: '1 1 120px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(59, 130, 246, 0.4)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#2563eb', fontWeight: '800', display: 'block' }}>🌐 Website</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>www.zarvixdigital.com</span>
-        </a>
-
-        {/* Email */}
-        <a 
-          href="mailto:Info@zarvixdigital.com" 
-          style={{
-            flex: '1 1 120px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>✉️ Email</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700', wordBreak: 'break-all' }}>Info@zarvixdigital.com</span>
-        </a>
-
-        {/* Contact */}
-        <a 
-          href="tel: 0314-7844214" 
-          style={{
-            flex: '1 1 90px', padding: '8px 10px', borderRadius: '10px',
-            background: '#ffffff', border: '1px solid rgba(0,0,0,0.05)',
-            textDecoration: 'none', transition: 'all 0.3s ease', boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
-          }}
-        >
-          <span style={{ fontSize: '8px', textTransform: 'uppercase', color: '#64748b', fontWeight: '800', display: 'block' }}>📞 Call</span>
-          <span style={{ fontSize: '11px', color: '#1e293b', fontWeight: '700' }}>0314-7844214</span>
-        </a>
       </div>
     </div>
-
-  </div>
-</div>
-      
-    </div>
-    
   </div>
 </footer>
     </div>
