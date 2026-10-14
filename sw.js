@@ -1,4 +1,4 @@
-const CACHE_NAME = 'knowledge-hub-cache-v2';
+const CACHE_NAME = 'knowledge-hub-cache-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -34,13 +34,9 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
+    fetch(event.request).catch(() => {
+      // Agar internet nahi hai ya network fail ho jaye, tab cache se file return karein
+      return caches.match(event.request);
+    })
   );
 });
